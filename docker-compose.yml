@@ -17,6 +17,14 @@ services:
       - "8081:8081"
     networks:
       - microservices-network
+  user-service:
+    build:
+      context: ./UserService
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - microservices-network
 
 networks:
   microservices-network:

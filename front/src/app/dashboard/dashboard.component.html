@@ -1,0 +1,9 @@
+<div>
+  <button (click)="fetchData1()">product service</button>
+  <button (click)="fetchData2()">order service</button>
+  <button (click)="fetchData3()">user service</button>
+
+  <div *ngIf="data">
+    <p>Response: {{ data | json }}</p>
+  </div>
+</div>
