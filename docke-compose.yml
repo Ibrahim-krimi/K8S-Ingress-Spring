@@ -1,0 +1,28 @@
+version : '3.8'
+
+services:
+  order-service:
+    build:
+      context: ./OrderService
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - microservices-network
+  product-service:
+    build:
+      context: ./ProductService
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: Overlay
+
+#Bridge est utilisé pour la communication entre conteneurs sur une seule machine, souvent dans des configurations de développement ou de test.
+#Host donne un accès direct au réseau de l’hôte, utile pour des applications nécessitant des performances réseau maximales.
+#Overlay permet la communication entre conteneurs sur plusieurs machines, ce qui est idéal pour des clusters.
+#macvlan est idéal pour des cas où chaque conteneur doit être visible sur le réseau local de l'hôte avec sa propre adresse IP.
