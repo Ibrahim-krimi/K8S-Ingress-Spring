@@ -20,7 +20,7 @@ services:
 
 networks:
   microservices-network:
-    driver: Overlay
+    driver: bridge
 
 #Bridge est utilisé pour la communication entre conteneurs sur une seule machine, souvent dans des configurations de développement ou de test.
 #Host donne un accès direct au réseau de l’hôte, utile pour des applications nécessitant des performances réseau maximales.
