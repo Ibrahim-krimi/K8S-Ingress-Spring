@@ -25,6 +25,21 @@ services:
       - "8080:8080"
     networks:
       - microservices-network
+############################################### la partie angular
+
+  angular-app:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - microservices-network
+    environment:
+      - USER_SERVICE_URL=http://user-service:8080
+      - PRODUCT_SERVICE_URL=http://product-service:8081
+      - ORDER_SERVICE_URL=http://order-service:8082
+
 
 networks:
   microservices-network:
