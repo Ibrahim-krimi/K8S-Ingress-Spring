@@ -1,22 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orderService # Nom du Deployment
+  name: orderservice # Nom du Deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orderService # matchLabels pour sélectionner les pods avec le label 'app: orderService'
+      app: orderservice # matchLabels pour sélectionner les pods avec le label 'app: orderService'
   template:
     metadata:
       labels:
-        app: orderService # Label pour le pod, utilisé pour le match avec le selectord
+        app: orderservice # Label pour le pod, utilisé pour le match avec le selectord
     spec:
       containers:
         - name: app
           image: ibrahimkr/k8s-ingress-spring-order-service:latest
           ports:
             - containerPort: 8082
+          resources:  # les ressources minimales  donc le min pour faire fonctionner mon image
+            requests:
+              memory: "64Mi"
+              cpu: "200m"
+            limits: # le conteneur peut utiliser au maximum 1 GiB de mémoire. S’il essaie d’aller au-delà, Kubernetes peut le tuer pour éviter des problèmes de surcharge.
+              memory: "128Mi"
+              cpu: "300m"
           imagePullPolicy: Always # Kubernetes va toujours essayer de récupérer (pull) la dernière version de l’image depuis le registre Docker spécifié
                                   # Avec IfNotPresent, Kubernetes va utiliser l’image locale sur le nœud si elle est déjà présente. Sinon, il téléchargera l’image depuis le registre
                                 #Avec Never, Kubernetes ne récupérera jamais l’image depuis le registre, même si elle n'est pas présente sur le nœud.
