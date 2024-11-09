@@ -1,0 +1,1 @@
+kubectl get all --all-namespaces -o yaml > sauvegarde-cluster.yaml
