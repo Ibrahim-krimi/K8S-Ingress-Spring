@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: orderservice # c'est le nom de service qui vas etre utiliser apres comme un dns il faut faire attention
+  namespace: default # ici le namescpase par defautl
+spec:
+  type: ClusterIP # donc ici le  type est cluserIp
+  selector:
+    app: orderservice # ici on selectionne les pods qui on un selectore orderservice
+  ports:
+    - port: 8082 # ici le port sur lequel le service est expose dans le cluster
+      targetPort: 8082 # ici le port sur lequel le conteneur ecoute a l'interieur
+      protocol: TCP # la protocl tcp pour la communication
+
+
+# TCP : Utilisé par défaut, il convient à la majorité des applications nécessitant une connexion fiable.
+# UDP : À préférer pour les applications nécessitant une transmission rapide et pour lesquelles une perte de données est acceptable. jeux appel video ect ..
+# SCTP : Moins utilisé dans les applications classiques, il est spécifique aux environnements qui nécessitent un protocole plus robuste pour des applications en temps réel et dans les télécommunications.

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: productservice
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: productservice
+  ports:
+    - port: 8081
+      targetPort: 8081
+      protocol: TCP

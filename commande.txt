@@ -1,1 +1,6 @@
 kubectl get all --all-namespaces -o yaml > sauvegarde-cluster.yaml
+
+
+sudo mkdir -p /run/systemd/resolve
+echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" | sudo tee /run/systemd/resolve/resolv.conf
+sudo chmod 644 /run/systemd/resolve/resolv.conf
